@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for kenza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night-0:#150c22;
+    --night-1:#1f1330;
+    --night-2:#2b1c3d;
+    --rose:#e0435c;
+    --rose-soft:#f2a1b0;
+    --gold:#d9b475;
+    --cream:#f5ece3;
+    --lavender:#b6a4c9;
+    --sage-glow:#9fd8c8;
+    --ember-glow:#f0906a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--night-0);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  .serif{font-family:'Cormorant Garamond', serif;}
+
+  #stars{ position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+
+  section{
+    position:relative; z-index:1;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:8vh 6vw;
+    text-align:center;
+  }
+
+  .eyebrow{ letter-spacing:0.35em; text-transform:uppercase; font-size:0.68rem; color:var(--lavender); margin-bottom:1.4rem; }
+
+  h1{
+    font-family:'Cormorant Garamond', serif; font-weight:500; font-style:italic;
+    font-size:clamp(2.6rem, 7vw, 5rem); color:var(--cream); line-height:1.1; max-width:16ch;
+  }
+  h1 span{ color:var(--rose-soft); font-style:normal; }
+
+  .sub{ margin-top:1.4rem; color:var(--lavender); font-size:1rem; letter-spacing:0.01em; max-width:40ch; line-height:1.7; }
+
+  .scroll-hint{
+    position:absolute; bottom:5vh; left:50%; transform:translateX(-50%);
+    font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--lavender);
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  .scroll-hint .line{width:1px; height:36px; background:linear-gradient(var(--lavender), transparent);}
+  @keyframes pulse{ 0%,100%{opacity:0.35;} 50%{opacity:0.9;} }
+
+  /* duo sections */
+  .duo-title{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:clamp(1.7rem,4vw,2.4rem); margin-bottom:0.7rem; max-width:24ch; }
+  .duo-sub{ color:var(--lavender); max-width:44ch; margin-bottom:3rem; font-size:0.95rem; line-height:1.6; }
+
+  .duo-wrap{
+    display:flex; align-items:stretch; justify-content:center; gap:clamp(1.2rem,4vw,3rem);
+    flex-wrap:wrap; max-width:920px;
+  }
+  .duo-card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(246,231,255,0.08);
+    border-radius:18px;
+    padding:2rem 1.7rem;
+    width:270px;
+    text-align:left;
+  }
+  .duo-card .role{ font-size:0.62rem; letter-spacing:0.26em; text-transform:uppercase; }
+  .duo-card.zaki .role{ color:var(--ember-glow); }
+  .duo-card.kenza .role{ color:var(--sage-glow); }
+  .duo-card .name{ font-family:'Cormorant Garamond', serif; font-size:1.7rem; margin:0.5rem 0 0.9rem; text-align:left; }
+  .duo-card .line{ font-size:0.86rem; color:var(--lavender); line-height:1.65; text-align:left; }
+  .duo-connector{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.3rem; color:var(--gold); align-self:center; }
+
+  .duo-footer{
+    margin-top:2.6rem; max-width:40ch; color:var(--cream); opacity:0.85;
+    font-family:'Cormorant Garamond', serif; font-size:1.2rem; font-style:italic;
+  }
+  .bridge-text{
+    margin-top:3.4rem; font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:1.5rem; color:var(--gold);
+  }
+
+  /* story section */
+  .date-badge{ font-family:'Cormorant Garamond', serif; font-size:4.6rem; color:var(--rose-soft); line-height:1; margin-bottom:0.4rem; }
+  .date-label{ letter-spacing:0.28em; text-transform:uppercase; font-size:0.68rem; color:var(--lavender); margin-bottom:2.2rem;}
+  .story-text{ max-width:42ch; font-size:1.05rem; line-height:1.85; color:var(--cream); opacity:0.9; }
+  .story-text + .story-text{ margin-top:1rem; }
+
+  /* ask section */
+  .ask-eyebrow{ letter-spacing:0.3em; text-transform:uppercase; font-size:0.68rem; color:var(--lavender); margin-bottom:1.2rem; }
+  .ask-title{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:500;
+    font-size:clamp(2rem, 5.6vw, 3.3rem); margin-bottom:2.6rem; max-width:20ch; line-height:1.25;
+  }
+  .ask-title .n{ color:var(--rose); font-style:normal; }
+  .ask-title .aside{ font-size:0.5em; color:var(--lavender); display:block; margin-top:0.4rem; font-style:italic; }
+
+  .btn-row{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; align-items:center; }
+  button.ask-btn{
+    font-family:'Jost', sans-serif; letter-spacing:0.03em;
+    border-radius:999px; border:none; cursor:pointer;
+    transition: transform 0.22s cubic-bezier(.2,.9,.3,1.3), box-shadow 0.22s ease, background 0.22s ease, font-size 0.22s ease, padding 0.22s ease;
+  }
+  #yesBtn{
+    background:var(--rose); color:#2a0d14; font-weight:500;
+    padding:0.9rem 2.2rem; font-size:1rem;
+    box-shadow:0 0 0 rgba(224,67,92,0);
+  }
+  #yesBtn:hover{ transform:translateY(-2px) scale(1.03); box-shadow:0 10px 26px rgba(224,67,92,0.32); }
+  #bigBtn{
+    background:transparent; color:var(--gold);
+    border:1px solid rgba(217,180,117,0.4);
+    padding:0.8rem 1.6rem; font-size:0.85rem;
+  }
+  #bigBtn:hover{ border-color:var(--gold); transform:translateY(-2px); }
+
+  #result{
+    margin-top:0.6rem; font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:1.4rem; color:var(--sage-glow); min-height:1.6rem; opacity:0; transition:opacity 0.4s ease;
+    max-width:36ch;
+  }
+  #result.show{ opacity:1; }
+
+  footer{
+    position:relative; z-index:1; text-align:center; padding:3rem 1rem 4rem;
+    font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--lavender); opacity:0.5;
+  }
+
+  #confetti-canvas{ position:fixed; inset:0; width:100%; height:100%; z-index:5; pointer-events:none; }
+
+  @media (max-width: 560px){
+    .duo-wrap{ gap:1rem; }
+    .duo-card{ width:100%; max-width:320px; }
+    .duo-connector{ display:none; }
+    .queue-box{ padding:1.6rem 1.4rem; min-width:0; width:100%; max-width:320px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<canvas id="confetti-canvas"></canvas>
+
+<section id="hero">
+  <p class="eyebrow">a lil something, made just for you</p>
+  <h1>for <span>kenza</span></h1>
+  <p class="sub">this is pretty important to me, so instead of just asking it, of course I'll do it in my own nerdy way.</p>
+  <div class="scroll-hint"><span>scroll</span><span class="line"></span></div>
+</section>
+
+<section id="duo-val">
+  <p class="eyebrow">exhibit a</p>
+  <h2 class="duo-title">we've always (not really) played well together</h2>
+  <p class="duo-sub">but our synergy has indeed always been unmatched, whether it's...</p>
+
+  <div class="duo-wrap">
+    <div class="duo-card zaki">
+      <p class="role">my raze</p>
+      <p class="name">satchels in, every time</p>
+      <p class="line">I spent way too much time learning her entries to not use them. SOMETIMES gets kills off it, and entries for the team, but of course, always barely survives.</p>
+    </div>
+    <p class="duo-connector">&amp;</p>
+    <div class="duo-card kenza">
+      <p class="role">your sage</p>
+      <p class="name">the reason I don't die</p>
+      <p class="line">with how aggressive I am, you know damn well I'm always either dead or almost so. your heals and ults let me go on for longer. and if not, you just do the carrying yourself.</p>
+    </div>
+  </div>
+
+  <p class="bridge-text">but that's not all</p>
+</section>
+
+<section id="duo-league">
+  <p class="eyebrow">exhibit b</p>
+  <h2 class="duo-title">you carry in val, so my turn comes in league</h2>
+
+  <div class="duo-wrap">
+    <div class="duo-card zaki">
+      <p class="role">me</p>
+      <p class="name">always off-role</p>
+      <p class="line">just to stay close to you. still manage to carry the monkeys that fill the rest of our lanes though, heh. but never alone.</p>
+    </div>
+    <p class="duo-connector">&amp;</p>
+    <div class="duo-card kenza">
+      <p class="role">your supports</p>
+      <p class="name">whoever it is that day</p>
+      <p class="line">the Milio who presses W too early and R too late. the Zyra and Yuumi who somehow steal every kill. that one Rakan game where you popped off, always saving my ass from those MF ults.</p>
+    </div>
+  </div>
+
+  <p class="duo-footer">we always made it work. no matter the game. always together.</p>
+</section>
+
+<section id="story">
+  <p class="date-badge">15.07</p>
+  <p class="date-label">1:42am · tiktok, of all places</p>
+  <p class="story-text">to this day I don't know how I ended up following you. but I'm sure glad I did.</p>
+  <p class="story-text">because no matter how it happened, I sure didn't plan on falling for you as fast as I did.</p>
+</section>
+
+<section id="ask">
+  <p class="ask-eyebrow">so, since I cannot wait any longer</p>
+  <h2 class="ask-title">kenza, will you<span class="aside">(although we're already married)</span>be my<span class="n"> girlfriend</span>?</h2>
+
+  <div class="btn-row">
+    <button id="yesBtn" class="ask-btn">yes</button>
+    <button id="bigBtn" class="ask-btn">yes, but bigger</button>
+  </div>
+  <p id="result"></p>
+</section>
+
+<footer>made by zaki, with way too much overtime spent on a font choice</footer>
+
+<script>
+// starfield
+const starCanvas = document.getElementById('stars');
+const sctx = starCanvas.getContext('2d');
+let stars = [];
+function resizeStars(){
+  starCanvas.width = window.innerWidth;
+  starCanvas.height = document.body.scrollHeight;
+  stars = [];
+  const count = Math.floor((starCanvas.width * starCanvas.height) / 9000);
+  for(let i=0;i<count;i++){
+    stars.push({
+      x: Math.random()*starCanvas.width,
+      y: Math.random()*starCanvas.height,
+      r: Math.random()*1.3 + 0.3,
+      speed: Math.random()*0.015 + 0.003,
+      phase: Math.random()*Math.PI*2
+    });
+  }
+}
+function drawStars(t){
+  sctx.clearRect(0,0,starCanvas.width, starCanvas.height);
+  for(const s of stars){
+    const twinkle = 0.5 + 0.5*Math.sin(t*s.speed + s.phase);
+    sctx.beginPath();
+    sctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    sctx.fillStyle = `rgba(245,236,227,${0.15 + twinkle*0.55})`;
+    sctx.fill();
+  }
+  requestAnimationFrame(drawStars);
+}
+window.addEventListener('resize', resizeStars);
+resizeStars();
+requestAnimationFrame(drawStars);
+
+// yes but bigger
+const bigBtn = document.getElementById('bigBtn');
+const yesBtn = document.getElementById('yesBtn');
+const result = document.getElementById('result');
+let stage = 0;
+const stages = [
+  {label:'yes, but a little bigger', size:'1rem'},
+  {label:'yes, but bigger than that', size:'1.15rem'},
+  {label:'YES, but even bigger', size:'1.35rem'},
+  {label:'ABSOLUTELY, ENORMOUSLY YES', size:'1.6rem'}
+];
+bigBtn.addEventListener('click', () => {
+  if(stage < stages.length){
+    bigBtn.textContent = stages[stage].label;
+    bigBtn.style.fontSize = stages[stage].size;
+    bigBtn.style.padding = (0.8 + stage*0.25) + 'rem ' + (1.6 + stage*0.6) + 'rem';
+    stage++;
+  } else {
+    celebrate("that's the biggest yes I've got. go on then, tap the real button.");
+  }
+});
+
+yesBtn.addEventListener('click', () => {
+  celebrate("you said yes, no takebacks now, you're stuck with me for the rest of your life :>");
+});
+
+function celebrate(msg){
+  result.textContent = msg;
+  result.classList.add('show');
+  fireConfetti();
+}
+
+// confetti
+const cCanvas = document.getElementById('confetti-canvas');
+const cctx = cCanvas.getContext('2d');
+cCanvas.width = window.innerWidth; cCanvas.height = window.innerHeight;
+window.addEventListener('resize', () => { cCanvas.width = window.innerWidth; cCanvas.height = window.innerHeight; });
+const colors = ['#e0435c','#f2a1b0','#d9b475','#9fd8c8','#f5ece3'];
+let particles = [];
+function fireConfetti(){
+  particles = [];
+  for(let i=0;i<140;i++){
+    particles.push({
+      x: cCanvas.width/2 + (Math.random()-0.5)*200,
+      y: cCanvas.height*0.35,
+      vx: (Math.random()-0.5)*8,
+      vy: Math.random()*-6 - 2,
+      g: 0.18 + Math.random()*0.08,
+      size: Math.random()*6+3,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      rot: Math.random()*360,
+      vrot: (Math.random()-0.5)*10,
+      life: 0
+    });
+  }
+  requestAnimationFrame(animConfetti);
+}
+function animConfetti(){
+  cctx.clearRect(0,0,cCanvas.width,cCanvas.height);
+  let alive = false;
+  for(const p of particles){
+    p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vrot; p.life++;
+    if(p.y < cCanvas.height + 20 && p.life < 260){
+      alive = true;
+      cctx.save();
+      cctx.translate(p.x, p.y);
+      cctx.rotate(p.rot*Math.PI/180);
+      cctx.fillStyle = p.color;
+      cctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+      cctx.restore();
+    }
+  }
+  if(alive) requestAnimationFrame(animConfetti);
+  else cctx.clearRect(0,0,cCanvas.width,cCanvas.height);
+}
+</script>
+
+</body>
+</html>
